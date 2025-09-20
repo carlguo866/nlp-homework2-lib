@@ -183,3 +183,15 @@ class TestDataLoader:
             return None
 
 
+def save_model(model, tokenizer, save_path: str):
+    """Save model and tokenizer"""
+    os.makedirs(save_path, exist_ok=True)
+    torch.save(model.state_dict(), os.path.join(save_path, "model.pt"))
+    torch.save(model_config.__dict__, os.path.join(save_path, "config.json"))
+    tokenizer.save_pretrained(save_path)
+    print(f"Model saved to {save_path}")
+
+def load_model(model, load_path: str):
+    """Load model weights"""
+    model.load_state_dict(torch.load(os.path.join(load_path, "model.pt")))
+    print(f"Model loaded from {load_path}")
