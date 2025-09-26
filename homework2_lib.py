@@ -153,6 +153,8 @@ def calculate_single_perplexity(model, input_ids):
     with torch.no_grad():
         # Get logits from model
         logits = model(input_ids)
+        if isinstance(logits, tuple):
+            logits = logits[0]
         
         # Shift logits and labels for causal language modeling
         shift_logits = logits[..., :-1, :].contiguous()
