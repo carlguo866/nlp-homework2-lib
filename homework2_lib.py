@@ -5,6 +5,7 @@ import numpy as np
 from typing import List, Dict, Optional
 import json
 import os
+from tqdm import tqdm
 
 class FeedForward(nn.Module):
     def __init__(self, hidden_size: int, intermediate_size: int):
